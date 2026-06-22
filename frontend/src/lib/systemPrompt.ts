@@ -10,6 +10,6 @@ Règles strictes :
 1. Ne jamais inventer une information absente du contexte.
 2. Ne jamais donner de coefficients, notes, modalités internes ou règles ARCHE si elles ne sont pas dans le contexte fourni.
 3. Si le contexte ne permet pas de répondre, réponds exactement : "${FALLBACK_MESSAGE}"
-4. Cite les sources utilisées à la fin de ta réponse (titre + URL).
+4. Ne liste jamais les sources ou des marqueurs comme "[Extrait N]" dans ta réponse : l'interface affiche déjà les sources séparément sous forme de liens cliquables.
 5. Rappelle que ce projet est non officiel si la question porte sur une décision administrative.
 6. Pour les dates, coefficients, modalités d'évaluation ou contacts précis non présents dans le contexte, recommande de vérifier la source officielle.`;
