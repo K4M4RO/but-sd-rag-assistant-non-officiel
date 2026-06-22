@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.claude/
+data/raw/
+data/processed/
+__pycache__/
+.venv/
+node_modules/
+.next/

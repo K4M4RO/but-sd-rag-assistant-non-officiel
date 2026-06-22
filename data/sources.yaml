@@ -1,0 +1,65 @@
+sources:
+  - id: ppn_but_sd_national
+    title: "Programme National Pédagogique (PPN) - BUT Science des Données"
+    type: pdf
+    url: "https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2023-12/science-des-donn-es-30879.pdf"
+    local_path: "data/raw/ppn_but_sd_national.pdf"
+    status: public_official
+    category: programme
+    publisher: "Ministère de l'Enseignement supérieur et de la Recherche"
+    last_checked: "2026-06-22"
+
+  - id: iut_metz_page_sd
+    title: "BUT SD - IUT Metz - Université de Lorraine"
+    type: html
+    url: "https://iut-metz.univ-lorraine.fr/sd"
+    status: public_official
+    category: formation
+    publisher: "IUT de Metz - Université de Lorraine"
+    last_checked: "2026-06-22"
+
+  - id: iut_metz_departement_sd
+    title: "Département SD - IUT Metz - Université de Lorraine"
+    type: html
+    url: "https://iut-metz.univ-lorraine.fr/departement-sd"
+    status: public_official
+    category: organisation
+    publisher: "IUT de Metz - Université de Lorraine"
+    last_checked: "2026-06-22"
+
+  - id: iut_metz_flyer
+    title: "Flyer BUT1 à BUT3 - Département Science des Données"
+    type: pdf
+    url: "https://iut-metz.univ-lorraine.fr/sites/default/files/2023-11/Flyer%20du%20BUT1%20au%20BUT3%20au%20d%C3%A9partementSD.pdf"
+    local_path: "data/raw/flyer_iut_metz_but_sd.pdf"
+    status: public_official
+    category: formation
+    publisher: "IUT de Metz - Université de Lorraine"
+    last_checked: "2026-06-22"
+
+  - id: onisep_parcours_ems
+    title: "BUT Science des données - Parcours Exploration et Modélisation Statistique - Onisep"
+    type: html
+    url: "https://www.onisep.fr/ressources/structures-enseignement/grand-est/moselle/iut-de-metz-universite-de-lorraine/but-science-des-donnees-parcours-exploration-et-modelisation-statistique"
+    status: public_official
+    category: formation
+    publisher: "Onisep"
+    last_checked: "2026-06-22"
+
+  - id: onisep_parcours_vcod
+    title: "BUT Science des données - Parcours Visualisation, Conception d'Outils Décisionnels - Onisep"
+    type: html
+    url: "https://www.onisep.fr/ressources/structures-enseignement/grand-est/moselle/iut-de-metz-universite-de-lorraine/but-science-des-donnees-parcours-visualisation-conception-d-outils-decisionnels"
+    status: public_official
+    category: formation
+    publisher: "Onisep"
+    last_checked: "2026-06-22"
+
+  - id: parcoursup_fiche
+    title: "Fiche formation Parcoursup - BUT Science des données - IUT de Metz"
+    type: html
+    url: "https://dossier.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=6572"
+    status: public_official
+    category: admission
+    publisher: "Parcoursup"
+    last_checked: "2026-06-22"
