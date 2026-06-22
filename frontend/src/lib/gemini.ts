@@ -22,13 +22,23 @@ export async function generateAnswer(question: string, chunks: MatchedChunk[]): 
   const ai = new GoogleGenAI({ apiKey });
   const context = buildContext(chunks);
 
-  const response = await ai.models.generateContent({
-    model: MODEL_NAME,
-    contents: `Contexte (extraits de sources publiques) :\n\n${context}\n\nQuestion de l'étudiant : ${question}`,
-    config: {
-      systemInstruction: SYSTEM_PROMPT,
-    },
-  });
-
-  return response.text ?? "";
+  // L'API Gemini renvoie parfois un 503 transitoire ("high demand") ; on retente
+  // quelques fois avant d'abandonner pour éviter de montrer une erreur évitable.
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const response = await ai.models.generateContent({
+        model: MODEL_NAME,
+        contents: `Contexte (extraits de sources publiques) :\n\n${context}\n\nQuestion de l'étudiant : ${question}`,
+        config: {
+          systemInstruction: SYSTEM_PROMPT,
+        },
+      });
+      return response.text ?? "";
+    } catch (err) {
+      lastError = err;
+      await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+    }
+  }
+  throw lastError;
 }

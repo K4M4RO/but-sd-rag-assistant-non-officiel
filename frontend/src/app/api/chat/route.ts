@@ -5,7 +5,10 @@ import { getSupabaseServerClient, type MatchedChunk } from "@/lib/supabase";
 import { FALLBACK_MESSAGE } from "@/lib/systemPrompt";
 
 const MATCH_COUNT = 5;
-const SIMILARITY_THRESHOLD = 0.78;
+// Seuil calibré pour gemini-embedding-001 (échelle de similarité différente de
+// l'ancien modèle e5-small) : sépare les questions hors-périmètre/sans réponse
+// (~0.65-0.69) des questions couvertes par les sources (~0.71-0.75).
+const SIMILARITY_THRESHOLD = 0.7;
 
 export async function POST(request: Request) {
   const { question } = await request.json();
