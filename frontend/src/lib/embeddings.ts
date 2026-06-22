@@ -1,24 +1,37 @@
-import { pipeline, type FeatureExtractionPipeline } from "@huggingface/transformers";
+import { GoogleGenAI } from "@google/genai";
 
-const MODEL_NAME = "Xenova/multilingual-e5-small";
+const MODEL_NAME = "gemini-embedding-001";
+const OUTPUT_DIMENSIONALITY = 768;
 
-let extractorPromise: Promise<FeatureExtractionPipeline> | null = null;
+let client: GoogleGenAI | null = null;
 
-function getExtractor() {
-  if (!extractorPromise) {
-    extractorPromise = pipeline("feature-extraction", MODEL_NAME);
+function getClient() {
+  if (!client) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY manquant dans .env");
+    }
+    client = new GoogleGenAI({ apiKey });
   }
-  return extractorPromise;
+  return client;
 }
 
-// Le modèle e5 attend un préfixe "query: " pour les questions (et "passage: "
-// pour les documents, utilisé côté script Python d'ingestion). Les deux côtés
-// doivent utiliser le même modèle pour que la recherche vectorielle soit cohérente.
+// Même modèle et même outputDimensionality que scripts/generate_embeddings.py,
+// sinon la recherche vectorielle dans Supabase ne serait pas cohérente.
 export async function embedQuery(question: string): Promise<number[]> {
-  const extractor = await getExtractor();
-  const output = await extractor(`query: ${question}`, {
-    pooling: "mean",
-    normalize: true,
+  const ai = getClient();
+  const response = await ai.models.embedContent({
+    model: MODEL_NAME,
+    contents: question,
+    config: {
+      taskType: "RETRIEVAL_QUERY",
+      outputDimensionality: OUTPUT_DIMENSIONALITY,
+    },
   });
-  return Array.from(output.data as Float32Array);
+
+  const values = response.embeddings?.[0]?.values;
+  if (!values) {
+    throw new Error("Réponse d'embedding vide");
+  }
+  return values;
 }

@@ -1,7 +1,7 @@
 const STEPS = [
   "Les sources publiques (PDF, HTML) sont extraites et nettoyées.",
   "Le texte est découpé en chunks (~1800 caractères, léger overlap).",
-  "Chaque chunk est transformé en embedding via un modèle local (multilingual-e5-small).",
+  "Chaque chunk est transformé en embedding via l'API Gemini (gemini-embedding-001).",
   "Les chunks et leurs embeddings sont stockés dans Supabase PostgreSQL + pgvector.",
   "La question posée par l'utilisateur est elle aussi transformée en embedding.",
   "Une recherche vectorielle (similarité cosinus) retrouve les chunks les plus pertinents.",

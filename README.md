@@ -15,7 +15,7 @@ d'inventer une réponse. Voir [docs/project_scope.md](docs/project_scope.md).
 Sources publiques (PDF/HTML)
         -> extraction (scripts/extract_pdf.py, extract_html.py)
         -> chunking (scripts/chunk_text.py)
-        -> embeddings locaux multilingual-e5-small (scripts/generate_embeddings.py)
+        -> embeddings via l'API Gemini gemini-embedding-001 (scripts/generate_embeddings.py)
         -> Supabase PostgreSQL + pgvector (scripts/schema.sql, scripts/ingest.py)
         -> question utilisateur -> embedding -> recherche vectorielle (match_chunks)
         -> si rien de pertinent : réponse de repli, sinon Gemini Flash-Lite génère la réponse

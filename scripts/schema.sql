@@ -1,7 +1,15 @@
 -- Schéma Supabase pgvector pour le BUT SD RAG Assistant
 -- A exécuter dans Supabase SQL Editor après avoir activé l'extension "vector".
+--
+-- NOTE: passage des embeddings de multilingual-e5-small (384 dim, local) à
+-- gemini-embedding-001 (768 dim, API) -- la table chunks est recréée car la
+-- dimension d'un type vector() ne peut pas être modifiée en place.
 
 create extension if not exists vector;
+
+drop function if exists match_chunks(vector(384), int);
+drop function if exists match_chunks(vector(768), int);
+drop table if exists chunks;
 
 create table if not exists documents (
   id text primary key,
@@ -13,22 +21,22 @@ create table if not exists documents (
   last_checked date
 );
 
-create table if not exists chunks (
+create table chunks (
   id bigint primary key,
   document_id text not null references documents(id) on delete cascade,
   content text not null,
-  embedding vector(384) not null,
+  embedding vector(768) not null,
   page int,
   chunk_index int not null
 );
 
-create index if not exists chunks_embedding_idx
+create index chunks_embedding_idx
   on chunks using hnsw (embedding vector_cosine_ops);
 
 -- Recherche par similarité cosinus, renvoie les k chunks les plus proches
 -- avec leurs métadonnées de source pour la citation.
 create or replace function match_chunks(
-  query_embedding vector(384),
+  query_embedding vector(768),
   match_count int default 5
 )
 returns table (
