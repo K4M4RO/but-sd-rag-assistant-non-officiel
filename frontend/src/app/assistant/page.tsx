@@ -57,9 +57,10 @@ export default function AssistantPage() {
     <div className="mx-auto flex h-[calc(100vh-130px)] max-w-3xl flex-col px-6 py-8">
       <h1 className="mb-1 text-xl font-semibold">Assistant BUT Science des Données</h1>
       <p className="mb-4 text-xs text-zinc-500">
-        Réponses générées par une IA (Gemini) à partir de sources publiques. Elles peuvent
-        contenir des erreurs — vérifie toujours les informations importantes auprès de l&apos;IUT
-        ou sur ARCHE.
+        Réponses générées par une IA (Llama 3.3 via Groq) à partir de sources publiques. Elles
+        peuvent contenir des erreurs — vérifie toujours les informations importantes auprès de
+        l&apos;IUT ou sur ARCHE. En cas de forte demande sur l&apos;API, une question peut
+        occasionnellement échouer : réessaie simplement quelques secondes plus tard.
       </p>
 
       <div className="flex-1 space-y-4 overflow-y-auto rounded-lg border border-zinc-200 bg-white p-4">

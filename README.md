@@ -18,7 +18,7 @@ Sources publiques (PDF/HTML)
         -> embeddings via l'API Gemini gemini-embedding-001 (scripts/generate_embeddings.py)
         -> Supabase PostgreSQL + pgvector (scripts/schema.sql, scripts/ingest.py)
         -> question utilisateur -> embedding -> recherche vectorielle (match_chunks)
-        -> si rien de pertinent : réponse de repli, sinon Gemini Flash-Lite génère la réponse
+        -> si rien de pertinent : réponse de repli, sinon Llama 3.3 (via Groq) génère la réponse
         -> réponse + sources affichées dans le frontend Next.js
 ```
 
@@ -58,7 +58,7 @@ npm install
 npm run dev
 ```
 
-Copie `.env.example` vers `frontend/.env.local` et renseigne tes clés (Supabase, Gemini).
+Copie `.env.example` vers `frontend/.env.local` et renseigne tes clés (Supabase, Gemini, Groq).
 
 ## Limites
 

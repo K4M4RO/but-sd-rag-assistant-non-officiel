@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { embedQuery } from "@/lib/embeddings";
-import { generateAnswer } from "@/lib/gemini";
+import { generateAnswer } from "@/lib/groq";
 import { getSupabaseServerClient, type MatchedChunk } from "@/lib/supabase";
 import { FALLBACK_MESSAGE } from "@/lib/systemPrompt";
 

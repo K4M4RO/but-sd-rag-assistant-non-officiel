@@ -6,7 +6,7 @@ const STEPS = [
   "La question posée par l'utilisateur est elle aussi transformée en embedding.",
   "Une recherche vectorielle (similarité cosinus) retrouve les chunks les plus pertinents.",
   "Si aucun chunk n'est suffisamment proche, l'assistant répond directement le message de repli, sans appeler le LLM.",
-  "Sinon, les chunks sont envoyés à Gemini Flash-Lite avec un prompt strict, et la réponse est renvoyée avec ses sources.",
+  "Sinon, les chunks sont envoyés à Llama 3.3 (via Groq) avec un prompt strict, et la réponse est renvoyée avec ses sources.",
 ];
 
 export default function AboutPage() {
